@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f6f0df" />
+  <meta name="description" content="CASHEW — the nut wrapped in money." />
+  <title>CASHEW — Zoom Into The Nut</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="grain" aria-hidden="true"></div>
+
+  <section id="portal" aria-label="Enter CASHEW">
+    <div class="portal-copy">
+      <span class="eyebrow">SCROLL TO ENTER</span>
+      <span class="mobile-hint">TAP TO ENTER</span>
+    </div>
+
+    <div id="cashew-stage">
+      <img
+        id="cashew-image"
+        src="assets/cashew-dollar.jpg"
+        alt="A cashew wrapped in a US dollar bill"
+        draggable="false"
+      />
+      <div id="portal-glow"></div>
+    </div>
+
+    <div class="scroll-line" aria-hidden="true"></div>
+  </section>
+
+  <main id="site" aria-hidden="true">
+    <nav class="nav">
+      <a class="brand" href="#home">CASH<span>EW</span></a>
+
+      <div class="nav-links">
+        <a href="#lore">LORE</a>
+        <a href="#tokenomics">TOKENOMICS</a>
+        <a href="#memes">MEMES</a>
+      </div>
+
+      <a class="nav-buy" href="#buy">BUY $CASHEW</a>
+    </nav>
+
+    <section class="hero" id="home">
+      <div class="hero-bg-word">CASHEW</div>
+
+      <div class="hero-content">
+        <p class="kicker">THE FIRST NUT WITH LIQUIDITY</p>
+        <h1>
+          CASH<br />
+          <span>MEETS</span><br />
+          CASHEW.
+        </h1>
+        <p class="hero-copy">
+          A meme so simple it should have existed years ago.
+          One cashew. One dollar. Infinite upside.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="#buy">BUY THE NUT</a>
+          <button class="button button-secondary" id="copy-ca" type="button" data-ca="PASTE_CONTRACT_ADDRESS">
+            COPY CA
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-object">
+        <div class="sticker sticker-one">100% NUT</div>
+        <div class="sticker sticker-two">$ WRAPPED</div>
+        <img src="assets/cashew-dollar.jpg" alt="" />
+      </div>
+
+      <div class="ticker" aria-label="CASHEW ticker">
+        <div class="ticker-track">
+          <span>$CASHEW</span><i>•</i><span>THE MONEY NUT</span><i>•</i>
+          <span>$CASHEW</span><i>•</i><span>THE MONEY NUT</span><i>•</i>
+          <span>$CASHEW</span><i>•</i><span>THE MONEY NUT</span><i>•</i>
+          <span>$CASHEW</span><i>•</i><span>THE MONEY NUT</span><i>•</i>
+        </div>
+      </div>
+    </section>
+
+    <section class="lore section" id="lore">
+      <div class="section-label">01 / THE LORE</div>
+
+      <div class="lore-grid">
+        <h2>IT STARTED<br />WITH ONE NUT.</h2>
+
+        <div class="lore-card">
+          <p>
+            Wall Street had bulls. Crypto had dogs. The internet had frogs.
+            Nobody asked the obvious question:
+          </p>
+          <blockquote>“What if money was wrapped around a cashew?”</blockquote>
+          <p>
+            That question changed nothing — and somehow changed everything.
+            $CASHEW is the purest form of financial innovation:
+            a nut with a dollar around it.
+          </p>
+        </div>
+      </div>
+
+      <div class="nut-facts">
+        <article><strong>01</strong><span>CASHEW</span><small>THE ASSET</small></article>
+        <article><strong>01</strong><span>DOLLAR</span><small>THE WRAPPER</small></article>
+        <article><strong>∞</strong><span>MEMES</span><small>THE UTILITY</small></article>
+      </div>
+    </section>
+
+    <section class="tokenomics section" id="tokenomics">
+      <div class="section-label">02 / TOKENOMICS</div>
+      <h2>NUTONOMICS</h2>
+
+      <div class="token-grid">
+        <article class="token-card big">
+          <span class="token-number">1B</span>
+          <p>TOTAL SUPPLY</p>
+          <small>Enough nuts for everyone.</small>
+        </article>
+
+        <article class="token-card">
+          <span class="token-number">0%</span>
+          <p>TAX</p>
+          <small>No hidden shell fees.</small>
+        </article>
+
+        <article class="token-card">
+          <span class="token-number">100%</span>
+          <p>MEME</p>
+          <small>No fake utility promises.</small>
+        </article>
+
+        <article class="token-card wide">
+          <div>
+            <span class="token-number">LP</span>
+            <p>LOCKED / BURNED</p>
+          </div>
+          <div class="shell-meter">
+            <span></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="memes section" id="memes">
+      <div class="section-label">03 / MEME LAB</div>
+      <div class="meme-head">
+        <h2>SPREAD<br />THE NUT.</h2>
+        <p>Screenshot it. Remix it. Make it worse. That is the whole point.</p>
+      </div>
+
+      <div class="meme-wall">
+        <div class="meme-card meme-a">
+          <img src="assets/cashew-dollar.jpg" alt="CASHEW meme" />
+          <strong>FIAT, BUT EDIBLE</strong>
+        </div>
+        <div class="meme-card meme-b">
+          <span class="huge">$</span>
+          <strong>CASHEW<br />RESERVE</strong>
+        </div>
+        <div class="meme-card meme-c">
+          <img src="assets/cashew-dollar.jpg" alt="CASHEW meme" />
+          <strong>GENERATIONS OF WEALTH</strong>
+        </div>
+        <div class="meme-card meme-d">
+          <span class="huge">🥜</span>
+          <strong>THE NUT STANDARD</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="buy section" id="buy">
+      <div class="buy-panel">
+        <span class="mini">THE MARKET IS NUTS.</span>
+        <h2>BUY<br />THE CASHEW.</h2>
+        <p>
+          Replace the buttons below with your real trading and social links
+          before launch.
+        </p>
+        <div class="buy-actions">
+          <a class="button button-dark" href="#" aria-label="Buy CASHEW">BUY NOW</a>
+          <a class="button button-outline-dark" href="#" aria-label="Open X">FOLLOW ON X</a>
+          <a class="button button-outline-dark" href="#" aria-label="Open Telegram">TELEGRAM</a>
+        </div>
+        <div class="contract">
+          <span>CONTRACT</span>
+          <button id="copy-ca-bottom" type="button" data-ca="PASTE_CONTRACT_ADDRESS">
+            PASTE_CONTRACT_ADDRESS
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <a class="brand footer-brand" href="#home">CASH<span>EW</span></a>
+      <p>THE INTERNET'S MOST LIQUID NUT.</p>
+      <small>© 2026 CASHEW. MEMES ARE NOT FINANCIAL ADVICE.</small>
+    </footer>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite">COPIED</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
