@@ -1,210 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f6f0df" />
-  <meta name="description" content="CASHEW — the nut wrapped in money." />
-  <title>CASHEW — Zoom Into The Nut</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f3eadc" />
+  <meta name="description" content="CASHEW — a cinematic, interactive landing page." />
+  <title>CASHEW</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="grain" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
 
-  <section id="portal" aria-label="Enter CASHEW">
-    <div class="portal-copy">
-      <span class="eyebrow">SCROLL TO ENTER</span>
-      <span class="mobile-hint">TAP TO ENTER</span>
-    </div>
+  <div class="loader" aria-hidden="true">
+    <div class="loader-word">CASHEW</div>
+    <div class="loader-track"><span></span></div>
+  </div>
 
-    <div id="cashew-stage">
-      <img
-        id="cashew-image"
-        src="assets/cashew-dollar.jpg"
-        alt="A cashew wrapped in a US dollar bill"
-        draggable="false"
-      />
-      <div id="portal-glow"></div>
-    </div>
+  <header class="site-header">
+    <a class="brand magnetic" href="#top" aria-label="CASHEW home">
+      <img class="brand-logo" src="assets/cashew-logo.png" alt="CASHEW logo" />
+      <span>CASHEW</span>
+    </a>
 
-    <div class="scroll-line" aria-hidden="true"></div>
-  </section>
-
-  <main id="site" aria-hidden="true">
     <nav class="nav">
-      <a class="brand" href="#home">CASH<span>EW</span></a>
-
-      <div class="nav-links">
-        <a href="#lore">LORE</a>
-        <a href="#tokenomics">TOKENOMICS</a>
-        <a href="#memes">MEMES</a>
-      </div>
-
-      <a class="nav-buy" href="#buy">BUY $CASHEW</a>
+      <a href="#film">Film</a>
+      <a href="#story">Story</a>
+      <a href="#mechanics">Mechanics</a>
+      <a href="#community">Community</a>
     </nav>
 
-    <section class="hero" id="home">
-      <div class="hero-bg-word">CASHEW</div>
+    <a class="pill magnetic" href="#community">
+      <span>Join the shell</span>
+      <span class="arrow">↗</span>
+    </a>
+  </header>
 
-      <div class="hero-content">
-        <p class="kicker">THE FIRST NUT WITH LIQUIDITY</p>
+  <main id="top">
+    <section class="hero" aria-label="CASHEW hero">
+      <div class="hero-backdrop" data-parallax="0.015"></div>
+      <div class="hero-glow" data-parallax="-0.025"></div>
+      <div class="hero-outline" aria-hidden="true">CASHEW</div>
+
+      <div class="hero-copy reveal">
+        <p class="eyebrow">THE NUT THAT COMPOUNDS</p>
         <h1>
-          CASH<br />
-          <span>MEETS</span><br />
-          CASHEW.
+          Small shell.<br />
+          <span>Heavy value.</span>
         </h1>
-        <p class="hero-copy">
-          A meme so simple it should have existed years ago.
-          One cashew. One dollar. Infinite upside.
+        <p class="hero-sub">
+          A clean, premium meme identity built around patience, conviction and one very valuable cashew.
         </p>
-
         <div class="hero-actions">
-          <a class="button button-primary" href="#buy">BUY THE NUT</a>
-          <button class="button button-secondary" id="copy-ca" type="button" data-ca="PASTE_CONTRACT_ADDRESS">
-            COPY CA
+          <a class="primary magnetic" href="#film">
+            <span>Watch the film</span>
+            <span>▶</span>
+          </a>
+          <button class="ghost magnetic copy-button" type="button" data-copy="CASHEW">
+            <span>Copy ticker</span>
+            <strong>$CASHEW</strong>
           </button>
         </div>
       </div>
 
-      <div class="hero-object">
-        <div class="sticker sticker-one">100% NUT</div>
-        <div class="sticker sticker-two">$ WRAPPED</div>
-        <img src="assets/cashew-dollar.jpg" alt="" />
+      <div class="scroll-cue">
+        <span>SCROLL TO ENTER</span>
+        <i></i>
       </div>
 
-      <div class="ticker" aria-label="CASHEW ticker">
-        <div class="ticker-track">
-          <span>$CASHEW</span><i>•</i><span>THE MONEY NUT</span><i>•</i>
-          <span>$CASHEW</span><i>•</i><span>THE MONEY NUT</span><i>•</i>
-          <span>$CASHEW</span><i>•</i><span>THE MONEY NUT</span><i>•</i>
-          <span>$CASHEW</span><i>•</i><span>THE MONEY NUT</span><i>•</i>
-        </div>
+      <div class="hero-badge" data-parallax="0.04">
+        <span>01</span>
+        <p>Premium shell<br>on-chain energy</p>
       </div>
     </section>
 
-    <section class="lore section" id="lore">
-      <div class="section-label">01 / THE LORE</div>
-
-      <div class="lore-grid">
-        <h2>IT STARTED<br />WITH ONE NUT.</h2>
-
-        <div class="lore-card">
-          <p>
-            Wall Street had bulls. Crypto had dogs. The internet had frogs.
-            Nobody asked the obvious question:
-          </p>
-          <blockquote>“What if money was wrapped around a cashew?”</blockquote>
-          <p>
-            That question changed nothing — and somehow changed everything.
-            $CASHEW is the purest form of financial innovation:
-            a nut with a dollar around it.
-          </p>
-        </div>
-      </div>
-
-      <div class="nut-facts">
-        <article><strong>01</strong><span>CASHEW</span><small>THE ASSET</small></article>
-        <article><strong>01</strong><span>DOLLAR</span><small>THE WRAPPER</small></article>
-        <article><strong>∞</strong><span>MEMES</span><small>THE UTILITY</small></article>
+    <section class="marquee" aria-label="CASHEW ticker">
+      <div class="marquee-track">
+        <span>CASHEW</span><i></i><span>HOLD THE SHELL</span><i></i><span>STACK THE NUT</span><i></i>
+        <span>CASHEW</span><i></i><span>HOLD THE SHELL</span><i></i><span>STACK THE NUT</span><i></i>
       </div>
     </section>
 
-    <section class="tokenomics section" id="tokenomics">
-      <div class="section-label">02 / TOKENOMICS</div>
-      <h2>NUTONOMICS</h2>
 
-      <div class="token-grid">
-        <article class="token-card big">
-          <span class="token-number">1B</span>
-          <p>TOTAL SUPPLY</p>
-          <small>Enough nuts for everyone.</small>
-        </article>
 
-        <article class="token-card">
-          <span class="token-number">0%</span>
-          <p>TAX</p>
-          <small>No hidden shell fees.</small>
-        </article>
-
-        <article class="token-card">
-          <span class="token-number">100%</span>
-          <p>MEME</p>
-          <small>No fake utility promises.</small>
-        </article>
-
-        <article class="token-card wide">
-          <div>
-            <span class="token-number">LP</span>
-            <p>LOCKED / BURNED</p>
-          </div>
-          <div class="shell-meter">
-            <span></span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="memes section" id="memes">
-      <div class="section-label">03 / MEME LAB</div>
-      <div class="meme-head">
-        <h2>SPREAD<br />THE NUT.</h2>
-        <p>Screenshot it. Remix it. Make it worse. That is the whole point.</p>
+    <section class="film-section" id="film" aria-label="CASHEW cinematic film">
+      <div class="film-header reveal">
+        <div class="section-label film-label">
+          <span>01</span>
+          <p>THE FILM</p>
+        </div>
+        <p class="film-kicker">CASHEW ORIGINAL / FILM 001</p>
       </div>
 
-      <div class="meme-wall">
-        <div class="meme-card meme-a">
-          <img src="assets/cashew-dollar.jpg" alt="CASHEW meme" />
-          <strong>FIAT, BUT EDIBLE</strong>
-        </div>
-        <div class="meme-card meme-b">
-          <span class="huge">$</span>
-          <strong>CASHEW<br />RESERVE</strong>
-        </div>
-        <div class="meme-card meme-c">
-          <img src="assets/cashew-dollar.jpg" alt="CASHEW meme" />
-          <strong>GENERATIONS OF WEALTH</strong>
-        </div>
-        <div class="meme-card meme-d">
-          <span class="huge">🥜</span>
-          <strong>THE NUT STANDARD</strong>
-        </div>
-      </div>
-    </section>
+      <div class="film-stage reveal">
+        <video
+          class="cashew-film"
+          poster="assets/cashew-film-poster.jpg"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="The Nut That Compounds cinematic video"
+        >
+          <source src="assets/cashew-film.mp4" type="video/mp4" />
+          Your browser does not support embedded video.
+        </video>
+        <div class="film-vignette" aria-hidden="true"></div>
+        <div class="film-grain" aria-hidden="true"></div>
 
-    <section class="buy section" id="buy">
-      <div class="buy-panel">
-        <span class="mini">THE MARKET IS NUTS.</span>
-        <h2>BUY<br />THE CASHEW.</h2>
-        <p>
-          Replace the buttons below with your real trading and social links
-          before launch.
-        </p>
-        <div class="buy-actions">
-          <a class="button button-dark" href="#" aria-label="Buy CASHEW">BUY NOW</a>
-          <a class="button button-outline-dark" href="#" aria-label="Open X">FOLLOW ON X</a>
-          <a class="button button-outline-dark" href="#" aria-label="Open Telegram">TELEGRAM</a>
+        <div class="film-title">
+          <p>THE NUT THAT COMPOUNDS</p>
+          <h2>Small shell.<br><span>Big cinema.</span></h2>
         </div>
-        <div class="contract">
-          <span>CONTRACT</span>
-          <button id="copy-ca-bottom" type="button" data-ca="PASTE_CONTRACT_ADDRESS">
-            PASTE_CONTRACT_ADDRESS
+
+        <div class="film-meta">
+          <span>00:08</span>
+          <span>CASHEW PICTURES</span>
+          <span>2026</span>
+        </div>
+
+        <div class="film-controls" aria-label="Video controls">
+          <button class="film-control magnetic" type="button" data-film-play aria-label="Pause video">
+            <span class="control-icon">Ⅱ</span>
+            <span class="control-label">PAUSE</span>
+          </button>
+          <button class="film-control magnetic" type="button" data-film-sound aria-label="Turn sound on">
+            <span class="control-icon">⌁</span>
+            <span class="control-label">SOUND ON</span>
           </button>
         </div>
+
+        <button class="film-hit-area" type="button" aria-label="Play or pause film"></button>
+      </div>
+
+      <div class="film-caption reveal">
+        <p>A cinematic introduction to the only asset protected by a shell.</p>
+        <a href="https://x.com/Cashewxyz_" target="_blank" rel="noopener noreferrer">WATCH WITH THE COMMUNITY ↗</a>
       </div>
     </section>
 
-    <footer>
-      <a class="brand footer-brand" href="#home">CASH<span>EW</span></a>
-      <p>THE INTERNET'S MOST LIQUID NUT.</p>
-      <small>© 2026 CASHEW. MEMES ARE NOT FINANCIAL ADVICE.</small>
-    </footer>
+    <section class="story section" id="story">
+      <div class="section-label reveal">
+        <span>02</span>
+        <p>THE STORY</p>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-heading reveal">
+          <h2>Not every<br>meme needs<br>to shout.</h2>
+        </div>
+
+        <div class="story-copy reveal">
+          <p class="lead">
+            CASHEW turns a simple object into a premium symbol: clean, memorable and instantly recognizable.
+          </p>
+          <p>
+            The visual system keeps everything restrained—warm cream, deep financial green, oversized typography and one hero object that carries the whole identity.
+          </p>
+          <div class="story-stat">
+            <strong data-counter="100">0</strong><span>%</span>
+            <p>shell-backed confidence</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="floating-card reveal" id="tilt-card">
+        <div class="card-top">
+          <span>CASHEW / 001</span>
+          <span>EST. NOW</span>
+        </div>
+        <div class="mini-shell" aria-hidden="true">
+          <span></span><span></span>
+        </div>
+        <div class="card-bottom">
+          <strong>$CASHEW</strong>
+          <p>THE NUT THAT COMPOUNDS</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mechanics section" id="mechanics">
+      <div class="section-label reveal light">
+        <span>03</span>
+        <p>THE MECHANICS</p>
+      </div>
+
+      <div class="mechanics-head reveal">
+        <h2>Built to feel<br>simple. Designed<br>to stay memorable.</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature reveal">
+          <span class="feature-no">01</span>
+          <div class="feature-line"></div>
+          <h3>Recognizable</h3>
+          <p>A single visual idea that survives avatars, banners, memes and motion.</p>
+        </article>
+        <article class="feature reveal">
+          <span class="feature-no">02</span>
+          <div class="feature-line"></div>
+          <h3>Premium</h3>
+          <p>Warm neutral tones and deep green give the brand a calm financial edge.</p>
+        </article>
+        <article class="feature reveal">
+          <span class="feature-no">03</span>
+          <div class="feature-line"></div>
+          <h3>Interactive</h3>
+          <p>Parallax, magnetic controls, reveals and tactile motion without visual clutter.</p>
+        </article>
+      </div>
+
+      <div class="statement reveal">
+        <p>ONE NUT.</p>
+        <p>ONE TICKER.</p>
+        <p class="outline">INFINITE SHELL.</p>
+      </div>
+    </section>
+
+    <section class="community section" id="community">
+      <div class="community-bg" aria-hidden="true"></div>
+      <div class="community-inner reveal">
+        <img class="community-logo reveal" src="assets/cashew-logo.png" alt="CASHEW logo" />
+        <p class="eyebrow">JOIN THE CASHEW ECONOMY</p>
+        <h2>Get inside<br>the shell.</h2>
+        <p>Enter the community, take the identity and help push the nut further.</p>
+
+        <div class="social-row">
+          <a class="social magnetic" href="https://x.com/Cashewxyz_" target="_blank" rel="noopener noreferrer" aria-label="Open CASHEW on X">
+            <span>X / TWITTER</span><b>↗</b>
+          </a>
+          <a class="social magnetic buy-link" href="https://gmgn.ai/?chain=robinhood" target="_blank" rel="noopener noreferrer" aria-label="Buy CASHEW">
+            <span>BUY CASHEW</span><b>↗</b>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <div id="toast" role="status" aria-live="polite">COPIED</div>
+  <footer>
+    <div class="footer-word">CASHEW</div>
+    <div class="footer-bottom">
+      <span>© 2026 CASHEW</span>
+      <span>SMALL SHELL. HEAVY VALUE.</span>
+      <a href="#top">BACK TO TOP ↑</a>
+    </div>
+  </footer>
 
+  <div class="toast" role="status" aria-live="polite">Ticker copied</div>
   <script src="script.js"></script>
 </body>
 </html>
