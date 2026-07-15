@@ -3,238 +3,240 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f3eadc" />
-  <meta name="description" content="CASHEW — a cinematic, interactive landing page." />
-  <title>CASHEW</title>
+  <meta name="theme-color" content="#e7ece8" />
+  <meta name="description" content="CASHEW — transparent value in motion." />
+  <title>CASHEW — Transparent Value</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
+<body class="is-loading">
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-lens" aria-hidden="true"></div>
 
-  <div class="loader" aria-hidden="true">
-    <div class="loader-word">CASHEW</div>
-    <div class="loader-track"><span></span></div>
+  <div class="opening-intro" id="openingIntro" aria-label="Website opening animation">
+    <video class="opening-video" autoplay muted playsinline preload="auto">
+      <source src="assets/cashew-opening.mp4" type="video/mp4" />
+      Your browser does not support the opening video.
+    </video>
+    <div class="opening-overlay" aria-hidden="true"></div>
+    <div class="opening-glow" aria-hidden="true"></div>
+
+    <button class="intro-skip magnetic" type="button" data-skip-intro>SKIP INTRO</button>
+
+    <div class="opening-copy">
+      <p>CASHEW / GLASS ERA</p>
+      <h1>Transparent<br>Value.</h1>
+      <span>OPENING ANIMATION / 2026</span>
+    </div>
+
+    <div class="opening-progress" aria-hidden="true"><i></i></div>
   </div>
 
   <header class="site-header">
     <a class="brand magnetic" href="#top" aria-label="CASHEW home">
-      <img class="brand-logo" src="assets/cashew-logo.png" alt="CASHEW logo" />
-      <span>CASHEW</span>
+      <span class="brand-image">
+        <img src="assets/cashew-glass-mark.png" alt="CASHEW glass logo" />
+      </span>
+      <span class="brand-name">CASHEW</span>
     </a>
 
     <nav class="nav">
+      <a href="#identity">Identity</a>
       <a href="#film">Film</a>
-      <a href="#story">Story</a>
-      <a href="#mechanics">Mechanics</a>
+      <a href="#system">System</a>
       <a href="#community">Community</a>
     </nav>
 
-    <a class="pill magnetic" href="#community">
-      <span>Join the shell</span>
-      <span class="arrow">↗</span>
+    <a class="header-buy magnetic liquid-button" href="https://gmgn.ai/?chain=robinhood" target="_blank" rel="noopener noreferrer">
+      <span>BUY CASHEW</span>
+      <b>↗</b>
     </a>
   </header>
 
   <main id="top">
-    <section class="hero" aria-label="CASHEW hero">
-      <div class="hero-backdrop" data-parallax="0.015"></div>
-      <div class="hero-glow" data-parallax="-0.025"></div>
-      <div class="hero-outline" aria-hidden="true">CASHEW</div>
+    <section class="hero" aria-label="CASHEW glass hero">
+      <div class="hero-image" data-parallax="0.012"></div>
+      <div class="hero-caustic" aria-hidden="true"></div>
+      <div class="hero-shine" aria-hidden="true"></div>
 
-      <div class="hero-copy reveal">
-        <p class="eyebrow">THE NUT THAT COMPOUNDS</p>
-        <h1>
-          Small shell.<br />
-          <span>Heavy value.</span>
-        </h1>
-        <p class="hero-sub">
-          A clean, premium meme identity built around patience, conviction and one very valuable cashew.
+      <div class="glass-bubble bubble-one" data-parallax="0.04"></div>
+      <div class="glass-bubble bubble-two" data-parallax="-0.025"></div>
+      <div class="glass-bubble bubble-three" data-parallax="0.018"></div>
+
+      <div class="hero-panel glass-panel reveal">
+        <p class="eyebrow">TRANSPARENT VALUE / 001</p>
+        <h1>Clear shell.<br><span>Heavy value.</span></h1>
+        <p>
+          CASHEW has evolved into a liquid-glass asset: weightless, reflective and impossible to ignore.
         </p>
         <div class="hero-actions">
-          <a class="primary magnetic" href="#film">
-            <span>Watch the film</span>
-            <span>▶</span>
+          <a class="primary-action magnetic liquid-button" href="#identity">
+            <span>ENTER THE GLASS</span>
+            <b>↓</b>
           </a>
-          <button class="ghost magnetic copy-button" type="button" data-copy="CASHEW">
-            <span>Copy ticker</span>
+          <button class="copy-action magnetic" type="button" data-copy="CASHEW">
+            <span>COPY TICKER</span>
             <strong>$CASHEW</strong>
           </button>
         </div>
       </div>
 
-      <div class="scroll-cue">
-        <span>SCROLL TO ENTER</span>
-        <i></i>
-      </div>
-
-      <div class="hero-badge" data-parallax="0.04">
-        <span>01</span>
-        <p>Premium shell<br>on-chain energy</p>
+      <div class="hero-index">
+        <span>CASHEW / GLASS ERA</span>
+        <span>2026</span>
       </div>
     </section>
 
-    <section class="marquee" aria-label="CASHEW ticker">
-      <div class="marquee-track">
-        <span>CASHEW</span><i></i><span>HOLD THE SHELL</span><i></i><span>STACK THE NUT</span><i></i>
-        <span>CASHEW</span><i></i><span>HOLD THE SHELL</span><i></i><span>STACK THE NUT</span><i></i>
+    <section class="ticker" aria-label="CASHEW ticker">
+      <div class="ticker-track">
+        <span>TRANSPARENT VALUE</span><i></i>
+        <span>LIQUID SHELL</span><i></i>
+        <span>$CASHEW</span><i></i>
+        <span>TRANSPARENT VALUE</span><i></i>
+        <span>LIQUID SHELL</span><i></i>
+        <span>$CASHEW</span><i></i>
       </div>
     </section>
 
-
-
-    <section class="film-section" id="film" aria-label="CASHEW cinematic film">
-      <div class="film-header reveal">
-        <div class="section-label film-label">
-          <span>01</span>
-          <p>THE FILM</p>
-        </div>
-        <p class="film-kicker">CASHEW ORIGINAL / FILM 001</p>
+    <section class="identity section" id="identity">
+      <div class="section-head reveal">
+        <div class="section-number">01</div>
+        <p>THE NEW IDENTITY</p>
       </div>
 
-      <div class="film-stage reveal">
-        <video
-          class="cashew-film"
-          poster="assets/cashew-film-poster.jpg"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          aria-label="The Nut That Compounds cinematic video"
-        >
-          <source src="assets/cashew-film.mp4" type="video/mp4" />
-          Your browser does not support embedded video.
-        </video>
-        <div class="film-vignette" aria-hidden="true"></div>
-        <div class="film-grain" aria-hidden="true"></div>
-
-        <div class="film-title">
-          <p>THE NUT THAT COMPOUNDS</p>
-          <h2>Small shell.<br><span>Big cinema.</span></h2>
-        </div>
-
-        <div class="film-meta">
-          <span>00:08</span>
-          <span>CASHEW PICTURES</span>
-          <span>2026</span>
-        </div>
-
-        <div class="film-controls" aria-label="Video controls">
-          <button class="film-control magnetic" type="button" data-film-play aria-label="Pause video">
-            <span class="control-icon">Ⅱ</span>
-            <span class="control-label">PAUSE</span>
-          </button>
-          <button class="film-control magnetic" type="button" data-film-sound aria-label="Turn sound on">
-            <span class="control-icon">⌁</span>
-            <span class="control-label">SOUND ON</span>
-          </button>
-        </div>
-
-        <button class="film-hit-area" type="button" aria-label="Play or pause film"></button>
-      </div>
-
-      <div class="film-caption reveal">
-        <p>A cinematic introduction to the only asset protected by a shell.</p>
-        <a href="https://x.com/Cashewxyz_" target="_blank" rel="noopener noreferrer">WATCH WITH THE COMMUNITY ↗</a>
-      </div>
-    </section>
-
-    <section class="story section" id="story">
-      <div class="section-label reveal">
-        <span>02</span>
-        <p>THE STORY</p>
-      </div>
-
-      <div class="story-grid">
-        <div class="story-heading reveal">
-          <h2>Not every<br>meme needs<br>to shout.</h2>
-        </div>
-
-        <div class="story-copy reveal">
+      <div class="identity-grid">
+        <div class="identity-copy reveal">
+          <p class="micro-label">THE GLASS ERA</p>
+          <h2>Less noise.<br>More reflection.</h2>
           <p class="lead">
-            CASHEW turns a simple object into a premium symbol: clean, memorable and instantly recognizable.
+            The new CASHEW world is made from soft sage glass, polished light and financial detail.
           </p>
-          <p>
-            The visual system keeps everything restrained—warm cream, deep financial green, oversized typography and one hero object that carries the whole identity.
+          <p class="body-copy">
+            Every surface feels clean and tactile. The shell floats, the light bends and the money wrap remains the unmistakable center of the identity.
           </p>
-          <div class="story-stat">
-            <strong data-counter="100">0</strong><span>%</span>
-            <p>shell-backed confidence</p>
+
+          <div class="identity-stats">
+            <div>
+              <strong data-counter="100">0</strong><span>%</span>
+              <p>transparent conviction</p>
+            </div>
+            <div>
+              <strong data-counter="01">0</strong>
+              <p>recognizable asset</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="object-stage reveal tilt-card">
+          <div class="stage-light"></div>
+          <img src="assets/cashew-glass-mark.png" alt="Glass CASHEW wrapped in a dollar bill" />
+          <div class="stage-reflection" aria-hidden="true"></div>
+          <div class="stage-caption">
+            <span>OBJECT 001</span>
+            <span>GLASS / USD</span>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="floating-card reveal" id="tilt-card">
-        <div class="card-top">
-          <span>CASHEW / 001</span>
-          <span>EST. NOW</span>
+    <section class="film-section section" id="film">
+      <div class="section-head reveal">
+        <div class="section-number">02</div>
+        <p>CINEMATIC ARCHIVE</p>
+      </div>
+
+      <div class="film-shell reveal">
+        <div class="film-topline">
+          <span>CASHEW PICTURES</span>
+          <span>FILM 001</span>
+          <span>00:08</span>
         </div>
-        <div class="mini-shell" aria-hidden="true">
-          <span></span><span></span>
+
+        <div class="film-stage">
+          <video class="cashew-film" poster="assets/cashew-film-poster.jpg" autoplay muted loop playsinline preload="metadata">
+            <source src="assets/cashew-film.mp4" type="video/mp4" />
+          </video>
+          <div class="film-glass" aria-hidden="true"></div>
+          <div class="film-copy">
+            <p>THE NUT THAT COMPOUNDS</p>
+            <h2>Original shell.<br><span>New surface.</span></h2>
+          </div>
+          <div class="film-controls">
+            <button type="button" class="film-control magnetic" data-film-play>
+              <b>Ⅱ</b><span>PAUSE</span>
+            </button>
+            <button type="button" class="film-control magnetic" data-film-sound>
+              <b>⌁</b><span>SOUND ON</span>
+            </button>
+          </div>
+          <button class="film-hit" type="button" aria-label="Play or pause film"></button>
         </div>
-        <div class="card-bottom">
-          <strong>$CASHEW</strong>
-          <p>THE NUT THAT COMPOUNDS</p>
+
+        <div class="film-bottomline">
+          <p>The first CASHEW film, preserved inside the new glass system.</p>
+          <a href="https://x.com/Cashewxyz_" target="_blank" rel="noopener noreferrer">WATCH ON X ↗</a>
         </div>
       </div>
     </section>
 
-    <section class="mechanics section" id="mechanics">
-      <div class="section-label reveal light">
-        <span>03</span>
-        <p>THE MECHANICS</p>
+    <section class="system section" id="system">
+      <div class="section-head reveal">
+        <div class="section-number">03</div>
+        <p>THE VISUAL SYSTEM</p>
       </div>
 
-      <div class="mechanics-head reveal">
-        <h2>Built to feel<br>simple. Designed<br>to stay memorable.</h2>
+      <div class="system-title reveal">
+        <p>BUILT FROM</p>
+        <h2>Light.<br>Glass.<br><span>Value.</span></h2>
       </div>
 
-      <div class="feature-grid">
-        <article class="feature reveal">
-          <span class="feature-no">01</span>
-          <div class="feature-line"></div>
-          <h3>Recognizable</h3>
-          <p>A single visual idea that survives avatars, banners, memes and motion.</p>
+      <div class="system-grid">
+        <article class="system-card reveal tilt-card">
+          <div class="card-orb orb-clear"></div>
+          <span>01</span>
+          <h3>Transparent</h3>
+          <p>Soft translucency and controlled blur make every layer feel physical.</p>
         </article>
-        <article class="feature reveal">
-          <span class="feature-no">02</span>
-          <div class="feature-line"></div>
-          <h3>Premium</h3>
-          <p>Warm neutral tones and deep green give the brand a calm financial edge.</p>
+
+        <article class="system-card reveal tilt-card">
+          <div class="card-orb orb-sage"></div>
+          <span>02</span>
+          <h3>Reflective</h3>
+          <p>Highlights move across surfaces as the cursor and page move.</p>
         </article>
-        <article class="feature reveal">
-          <span class="feature-no">03</span>
-          <div class="feature-line"></div>
-          <h3>Interactive</h3>
-          <p>Parallax, magnetic controls, reveals and tactile motion without visual clutter.</p>
+
+        <article class="system-card reveal tilt-card">
+          <div class="card-orb orb-money"></div>
+          <span>03</span>
+          <h3>Valuable</h3>
+          <p>The dollar wrap stays sharp while the shell becomes almost weightless.</p>
         </article>
       </div>
 
-      <div class="statement reveal">
-        <p>ONE NUT.</p>
-        <p>ONE TICKER.</p>
-        <p class="outline">INFINITE SHELL.</p>
+      <div class="manifesto reveal">
+        <p>YOU CAN SEE THROUGH THE SHELL.</p>
+        <p class="outline">YOU CANNOT SEE PAST THE VALUE.</p>
       </div>
     </section>
 
     <section class="community section" id="community">
-      <div class="community-bg" aria-hidden="true"></div>
-      <div class="community-inner reveal">
-        <img class="community-logo reveal" src="assets/cashew-logo.png" alt="CASHEW logo" />
-        <p class="eyebrow">JOIN THE CASHEW ECONOMY</p>
-        <h2>Get inside<br>the shell.</h2>
-        <p>Enter the community, take the identity and help push the nut further.</p>
+      <div class="community-light" aria-hidden="true"></div>
+      <div class="community-art" data-parallax="0.008"></div>
+      <div class="community-panel glass-panel reveal">
+        <img src="assets/cashew-glass-mark.png" alt="CASHEW glass mark" />
+        <p class="eyebrow">JOIN THE GLASS ERA</p>
+        <h2>Enter the<br>reflection.</h2>
+        <p>Follow the story, collect the visual identity and buy CASHEW on Robinhood Chain.</p>
 
-        <div class="social-row">
-          <a class="social magnetic" href="https://x.com/Cashewxyz_" target="_blank" rel="noopener noreferrer" aria-label="Open CASHEW on X">
+        <div class="community-actions">
+          <a class="community-link magnetic" href="https://x.com/Cashewxyz_" target="_blank" rel="noopener noreferrer">
             <span>X / TWITTER</span><b>↗</b>
           </a>
-          <a class="social magnetic buy-link" href="https://gmgn.ai/?chain=robinhood" target="_blank" rel="noopener noreferrer" aria-label="Buy CASHEW">
+          <a class="community-link buy magnetic liquid-button" href="https://gmgn.ai/?chain=robinhood" target="_blank" rel="noopener noreferrer">
             <span>BUY CASHEW</span><b>↗</b>
           </a>
         </div>
@@ -244,9 +246,9 @@
 
   <footer>
     <div class="footer-word">CASHEW</div>
-    <div class="footer-bottom">
+    <div class="footer-row">
       <span>© 2026 CASHEW</span>
-      <span>SMALL SHELL. HEAVY VALUE.</span>
+      <span>TRANSPARENT VALUE</span>
       <a href="#top">BACK TO TOP ↑</a>
     </div>
   </footer>

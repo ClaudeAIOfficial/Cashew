@@ -1,28 +1,59 @@
 document.body.classList.add("is-loading");
+document.body.classList.add("intro-lock");
 
-const loader = document.querySelector(".loader");
-window.addEventListener("load", () => {
+const openingIntro = document.querySelector("#openingIntro");
+const openingVideo = document.querySelector(".opening-video");
+const openingProgress = document.querySelector(".opening-progress i");
+const skipIntroButton = document.querySelector("[data-skip-intro]");
+
+let introClosed = false;
+
+function closeIntro() {
+  if (introClosed || !openingIntro) return;
+  introClosed = true;
+  openingIntro.classList.add("done");
+  document.body.classList.remove("is-loading");
+  document.body.classList.remove("intro-lock");
   setTimeout(() => {
-    loader.classList.add("done");
-    document.body.classList.remove("is-loading");
-  }, 1250);
+    openingIntro.remove();
+  }, 900);
+}
+
+window.addEventListener("load", () => {
+  if (!openingVideo) {
+    closeIntro();
+    return;
+  }
+  openingVideo.play().catch(() => {});
 });
+
+openingVideo?.addEventListener("timeupdate", () => {
+  if (!openingProgress || !openingVideo.duration) return;
+  const ratio = Math.max(0, Math.min(1, openingVideo.currentTime / openingVideo.duration));
+  openingProgress.style.transform = `scaleX(${ratio})`;
+});
+
+openingVideo?.addEventListener("ended", closeIntro);
+openingVideo?.addEventListener("error", closeIntro);
+skipIntroButton?.addEventListener("click", closeIntro);
+
+// Safety fallback in case a browser blocks or fails to finish the video.
+setTimeout(closeIntro, 20000);
 
 const header = document.querySelector(".site-header");
 window.addEventListener("scroll", () => {
-  header.classList.toggle("scrolled", window.scrollY > 30);
+  header?.classList.toggle("scrolled", window.scrollY > 32);
 }, { passive: true });
 
 const reveals = document.querySelectorAll(".reveal");
-const observer = new IntersectionObserver((entries) => {
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add("visible");
+    revealObserver.unobserve(entry.target);
   });
-}, { threshold: 0.14 });
-reveals.forEach((el) => observer.observe(el));
+}, { threshold: .13 });
+reveals.forEach((el) => revealObserver.observe(el));
 
 const counters = document.querySelectorAll("[data-counter]");
 const counterObserver = new IntersectionObserver((entries) => {
@@ -31,159 +62,133 @@ const counterObserver = new IntersectionObserver((entries) => {
     const el = entry.target;
     const end = Number(el.dataset.counter || 0);
     const start = performance.now();
-    const duration = 1200;
-    const tick = (now) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.floor(end * eased);
-      if (t < 1) requestAnimationFrame(tick);
+    const duration = 1300;
+    const update = (now) => {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.floor(end * eased)).padStart(end < 10 ? 2 : 1, "0");
+      if (progress < 1) requestAnimationFrame(update);
     };
-    requestAnimationFrame(tick);
+    requestAnimationFrame(update);
     counterObserver.unobserve(el);
   });
-}, { threshold: .6 });
+}, { threshold: .55 });
 counters.forEach((el) => counterObserver.observe(el));
 
-const parallaxEls = document.querySelectorAll("[data-parallax]");
-let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
+let targetX = 0;
+let targetY = 0;
+let smoothX = 0;
+let smoothY = 0;
+const parallax = document.querySelectorAll("[data-parallax]");
+const lens = document.querySelector(".cursor-lens");
 
-window.addEventListener("pointermove", (e) => {
-  mouseX = (e.clientX / innerWidth - .5) * 2;
-  mouseY = (e.clientY / innerHeight - .5) * 2;
+window.addEventListener("pointermove", (event) => {
+  targetX = event.clientX;
+  targetY = event.clientY;
 });
 
-function animateParallax() {
-  currentX += (mouseX - currentX) * .06;
-  currentY += (mouseY - currentY) * .06;
-  parallaxEls.forEach((el) => {
-    const depth = Number(el.dataset.parallax);
-    const x = currentX * innerWidth * depth;
-    const y = currentY * innerHeight * depth;
-    const base = el.classList.contains("hero-backdrop") ? "scale(1.045)" : "";
-    el.style.transform = `${base} translate3d(${x}px, ${y}px, 0)`;
+function pointerLoop() {
+  smoothX += (targetX - smoothX) * .12;
+  smoothY += (targetY - smoothY) * .12;
+
+  if (lens) {
+    lens.style.transform = `translate(${smoothX - 22}px, ${smoothY - 22}px)`;
+  }
+
+  const normalizedX = smoothX / innerWidth - .5;
+  const normalizedY = smoothY / innerHeight - .5;
+
+  parallax.forEach((el) => {
+    const depth = Number(el.dataset.parallax || 0);
+    const x = normalizedX * innerWidth * depth;
+    const y = normalizedY * innerHeight * depth;
+    const scale = el.classList.contains("hero-image") ? "scale(1.035)" :
+                  el.classList.contains("community-art") ? "scale(1.05)" : "";
+    el.style.transform = `${scale} translate3d(${x}px, ${y}px, 0)`;
   });
-  requestAnimationFrame(animateParallax);
+
+  requestAnimationFrame(pointerLoop);
 }
-animateParallax();
+pointerLoop();
+
+document.querySelectorAll("a, button, .tilt-card").forEach((el) => {
+  el.addEventListener("pointerenter", () => lens?.classList.add("active"));
+  el.addEventListener("pointerleave", () => lens?.classList.remove("active"));
+});
 
 document.querySelectorAll(".magnetic").forEach((el) => {
-  el.addEventListener("pointermove", (e) => {
-    const r = el.getBoundingClientRect();
-    const x = e.clientX - (r.left + r.width / 2);
-    const y = e.clientY - (r.top + r.height / 2);
-    el.style.transform = `translate(${x * .12}px, ${y * .12}px)`;
+  el.addEventListener("pointermove", (event) => {
+    const rect = el.getBoundingClientRect();
+    const x = event.clientX - rect.left - rect.width / 2;
+    const y = event.clientY - rect.top - rect.height / 2;
+    el.style.transform = `translate(${x * .09}px, ${y * .09}px)`;
   });
   el.addEventListener("pointerleave", () => {
     el.style.transform = "";
   });
 });
 
-const tiltCard = document.querySelector("#tilt-card");
-if (tiltCard) {
-  tiltCard.addEventListener("pointermove", (e) => {
-    const r = tiltCard.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - .5;
-    const y = (e.clientY - r.top) / r.height - .5;
-    tiltCard.style.transform = `perspective(900px) rotateX(${-y * 10}deg) rotateY(${x * 13}deg) translateY(-8px)`;
+document.querySelectorAll(".tilt-card").forEach((card) => {
+  card.addEventListener("pointermove", (event) => {
+    const rect = card.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - .5;
+    const y = (event.clientY - rect.top) / rect.height - .5;
+    card.style.transform = `perspective(1000px) rotateX(${-y * 7}deg) rotateY(${x * 9}deg) translateY(-5px)`;
   });
-  tiltCard.addEventListener("pointerleave", () => {
-    tiltCard.style.transform = "";
+  card.addEventListener("pointerleave", () => {
+    card.style.transform = "";
   });
-}
+});
 
-const copyButton = document.querySelector(".copy-button");
+const copyButton = document.querySelector("[data-copy]");
 const toast = document.querySelector(".toast");
 copyButton?.addEventListener("click", async () => {
   const value = copyButton.dataset.copy || "CASHEW";
   try {
     await navigator.clipboard.writeText(value);
   } catch {
-    const input = document.createElement("textarea");
-    input.value = value;
-    document.body.appendChild(input);
-    input.select();
+    const helper = document.createElement("textarea");
+    helper.value = value;
+    document.body.appendChild(helper);
+    helper.select();
     document.execCommand("copy");
-    input.remove();
+    helper.remove();
   }
-  toast.classList.add("show");
-  setTimeout(() => toast.classList.remove("show"), 1500);
+  toast?.classList.add("show");
+  setTimeout(() => toast?.classList.remove("show"), 1500);
 });
 
-const dot = document.querySelector(".cursor-dot");
-const ring = document.querySelector(".cursor-ring");
-let ringX = 0, ringY = 0, pointerX = 0, pointerY = 0;
-window.addEventListener("pointermove", (e) => {
-  pointerX = e.clientX; pointerY = e.clientY;
-  dot.style.transform = `translate(${pointerX - 3}px, ${pointerY - 3}px)`;
-});
-function cursorLoop() {
-  ringX += (pointerX - ringX) * .16;
-  ringY += (pointerY - ringY) * .16;
-  ring.style.transform = `translate(${ringX - 17}px, ${ringY - 17}px)`;
-  requestAnimationFrame(cursorLoop);
-}
-cursorLoop();
-document.querySelectorAll("a,button").forEach((el) => {
-  el.addEventListener("pointerenter", () => ring.classList.add("active"));
-  el.addEventListener("pointerleave", () => ring.classList.remove("active"));
-});
+const video = document.querySelector(".cashew-film");
+const filmStage = document.querySelector(".film-stage");
+const playButton = document.querySelector("[data-film-play]");
+const soundButton = document.querySelector("[data-film-sound]");
+const filmHit = document.querySelector(".film-hit");
 
-window.addEventListener("scroll", () => {
-  const bg = document.querySelector(".community-bg");
-  if (!bg) return;
-  const rect = bg.parentElement.getBoundingClientRect();
-  if (rect.top < innerHeight && rect.bottom > 0) {
-    const shift = (rect.top / innerHeight) * 18;
-    bg.style.transform = `scale(1.07) translateY(${shift}px)`;
-  }
-}, { passive: true });
-
-
-// Cinematic film controls
-const film = document.querySelector('.cashew-film');
-const filmStage = document.querySelector('.film-stage');
-const filmPlay = document.querySelector('[data-film-play]');
-const filmSound = document.querySelector('[data-film-sound]');
-const filmHitArea = document.querySelector('.film-hit-area');
-
-function syncFilmPlayUI() {
-  if (!film || !filmPlay || !filmStage) return;
-  const paused = film.paused;
-  filmStage.classList.toggle('is-paused', paused);
-  filmPlay.querySelector('.control-icon').textContent = paused ? '▶' : 'Ⅱ';
-  filmPlay.querySelector('.control-label').textContent = paused ? 'PLAY' : 'PAUSE';
-  filmPlay.setAttribute('aria-label', paused ? 'Play video' : 'Pause video');
+function syncPlayState() {
+  if (!video || !playButton || !filmStage) return;
+  const paused = video.paused;
+  filmStage.classList.toggle("is-paused", paused);
+  playButton.querySelector("b").textContent = paused ? "▶" : "Ⅱ";
+  playButton.querySelector("span").textContent = paused ? "PLAY" : "PAUSE";
 }
 
-function toggleFilmPlayback() {
-  if (!film) return;
-  if (film.paused) film.play().catch(() => {});
-  else film.pause();
-  setTimeout(syncFilmPlayUI, 0);
+function togglePlay() {
+  if (!video) return;
+  if (video.paused) video.play().catch(() => {});
+  else video.pause();
+  syncPlayState();
 }
 
-filmPlay?.addEventListener('click', toggleFilmPlayback);
-filmHitArea?.addEventListener('click', toggleFilmPlayback);
-film?.addEventListener('play', syncFilmPlayUI);
-film?.addEventListener('pause', syncFilmPlayUI);
+playButton?.addEventListener("click", togglePlay);
+filmHit?.addEventListener("click", togglePlay);
+video?.addEventListener("play", syncPlayState);
+video?.addEventListener("pause", syncPlayState);
 
-filmSound?.addEventListener('click', () => {
-  if (!film) return;
-  film.muted = !film.muted;
-  filmSound.querySelector('.control-icon').textContent = film.muted ? '⌁' : '◖';
-  filmSound.querySelector('.control-label').textContent = film.muted ? 'SOUND ON' : 'SOUND OFF';
-  filmSound.setAttribute('aria-label', film.muted ? 'Turn sound on' : 'Turn sound off');
-  if (film.paused) film.play().catch(() => {});
+soundButton?.addEventListener("click", () => {
+  if (!video || !soundButton) return;
+  video.muted = !video.muted;
+  soundButton.querySelector("b").textContent = video.muted ? "⌁" : "◉";
+  soundButton.querySelector("span").textContent = video.muted ? "SOUND ON" : "SOUND OFF";
 });
 
-// Pause the film when it is far off-screen and resume muted when it returns.
-const filmVisibility = film && new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      film.play().catch(() => {});
-    } else {
-      film.pause();
-    }
-  });
-}, { threshold: .18 });
-if (film && filmVisibility) filmVisibility.observe(film);
+syncPlayState();
