@@ -140,22 +140,29 @@ document.querySelectorAll(".tilt-card").forEach((card) => {
   });
 });
 
-const copyButton = document.querySelector("[data-copy]");
+const copyButtons = document.querySelectorAll("[data-copy]");
 const toast = document.querySelector(".toast");
-copyButton?.addEventListener("click", async () => {
-  const value = copyButton.dataset.copy || "CASHEW";
-  try {
-    await navigator.clipboard.writeText(value);
-  } catch {
-    const helper = document.createElement("textarea");
-    helper.value = value;
-    document.body.appendChild(helper);
-    helper.select();
-    document.execCommand("copy");
-    helper.remove();
-  }
-  toast?.classList.add("show");
-  setTimeout(() => toast?.classList.remove("show"), 1500);
+
+copyButtons.forEach((copyButton) => {
+  copyButton.addEventListener("click", async () => {
+    const value = copyButton.dataset.copy || "";
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      const helper = document.createElement("textarea");
+      helper.value = value;
+      document.body.appendChild(helper);
+      helper.select();
+      document.execCommand("copy");
+      helper.remove();
+    }
+
+    if (toast) {
+      toast.textContent = copyButton.dataset.copyLabel || "Copied";
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1500);
+    }
+  });
 });
 
 const video = document.querySelector(".cashew-film");
